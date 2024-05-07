@@ -4,5 +4,15 @@ const app = new Koa();
 import router from "./router/index.js"
 // 响应
 app.use(router.routes());   
+import swagger from "./config/swagger.js"
+import {koaSwagger} from "koa2-swagger-ui"
 app.use(router.allowedMethods());
+//配置swagger文档
+app.use(swagger.routes(), swagger.allowedMethods())
+app.use(koaSwagger({
+    routePrefix: '/api',
+    swaggerOptions: {
+      url: '/api.json', 
+    },
+}))
 app.listen(4320);

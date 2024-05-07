@@ -1,0 +1,13 @@
+{
+  "name": "englishBackground",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT", 
+   "type": "module",
+  "scripts": {
+    "dev": "esno"
+  },
+  "dependencies": {
+    "koa": "^2.15.3"
+  }
+}

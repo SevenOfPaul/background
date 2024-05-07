@@ -1,0 +1,14 @@
+{
+    "apis": [
+        {
+            "name": "odor",
+            "api": "https://apiv3.shanbay.com/weapps/dailyquote/quote/",
+            "params": [
+                {
+                    "name": "date",
+                    "type": "TIMESTAMP"
+                }
+            ]
+        }
+    ]
+}

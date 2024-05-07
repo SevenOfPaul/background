@@ -1,13 +1,16 @@
 {
-  "name": "englishBackground",
+  "dependencies": {
+    "koa": "^2.15.3",
+    "mysql2": "^3.9.7",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
+  },
+  "name": "background",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT", 
-   "type": "module",
-  "scripts": {
-    "dev": "esno"
-  },
-  "dependencies": {
-    "koa": "^2.15.3"
-  }
+  "repository": "https://github.com/SevenOfPaul/background.git",
+  "author": "<paul>",
+  "license": "MIT"
 }

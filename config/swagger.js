@@ -16,7 +16,7 @@ const swaggerDefinition = {
 // 通过路由获取生成的注解文件
 const options = {
     swaggerDefinition,
-    apis: [path.join(__filename,"../router/*.js")], //配置路由router文件的位置
+    apis: [path.join(__filename,"../../router/*.js")], //配置路由router文件的位置
 };
 const swaggerSpec = swaggerJSDoc(options)
 

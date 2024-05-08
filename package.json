@@ -8,9 +8,8 @@
     "mysql2": "^3.9.7",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "reflect-metadata": "^0.2.2",
-    "swagger-jsdoc": "^6.2.8",
-    "typeorm": "^0.3.20"
+    "sequelize": "^6.37.3",
+    "swagger-jsdoc": "^6.2.8"
   },
   "type": "module",
   "name": "background",

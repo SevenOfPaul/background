@@ -1,7 +1,5 @@
-{
-    "apis": [
-        {
-            "name": "odor",
+{    
+           "odor":{
             "api": "https://apiv3.shanbay.com/weapps/dailyquote/quote/",
             "params": [
                 {
@@ -10,5 +8,5 @@
                 }
             ]
         }
-    ]
+    
 }

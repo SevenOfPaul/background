@@ -1,14 +1,20 @@
-import axios from "axios"
 import Router  from 'koa-router'; 
 const router = new Router();
-import data from "../apis.json" assert { type: 'json' };
-const {apis}=data
+import http from "../http/index.js"
+import apis from "../apis.json" assert { type: 'json' };
+/**
+ * @swagger
+ * /odor:
+ *   get:
+ *     summary: 每日一句api
+ *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ */
+
 router.get("/",async (ctx)=>{
-    console.log(ctx.request.query)
-    const {data}=await axios.get(`https://apiv3.shanbay.com/weapps/dailyquote/quote/`);
+    const data= await http("GET",apis["odor"].api);
 ctx.body={
-    translation:data.translation,
-    content:data.content
+    status:"200",
+    data
 }
 })
 

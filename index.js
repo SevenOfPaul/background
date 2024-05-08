@@ -6,6 +6,7 @@ import router from "./router/index.js"
 app.use(router.routes());   
 import swagger from "./config/swagger.js"
 import {koaSwagger} from "koa2-swagger-ui"
+import sequelize from "./database/index.js"
 app.use(router.allowedMethods());
 //配置swagger文档
 app.use(swagger.routes(), swagger.allowedMethods())

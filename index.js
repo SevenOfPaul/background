@@ -2,19 +2,21 @@ import Koa from "koa"
 const app = new Koa();
 //引入路由中间件
 import router from "./router/index.js"
-// 响应
-app.use(router.routes());   
+// 响应  
 import swagger from "./config/swagger.js"
 import {koaSwagger} from "koa2-swagger-ui"
-import database from "./database/index.js";
-import Book from "./database/model/book.model.js";
-import bookEntity from "./database/entity/book.entity.js";
-try{
-await database.initialize();
-}catch{
-  console.error("数据库连接失败")
-}
-app.use(router.allowedMethods());
+//链接数据库
+import mongoose from "mongoose";
+// import logger from "./middleware/logger.js";
+import errorCatch from "./middleware/errorCatch.js";
+import logger from "./middleware/logger.js";
+mongoose.connect('mongodb://127.0.0.1:27017/english')
+const db=await mongoose.connection;
+// db.watch().on("change",(data,target)=>{console.log(data)})
+// try{
+// }catch{
+// }
+// app.use(router.allowedMethods());
 //配置swagger文档
 app.use(swagger.routes(), swagger.allowedMethods())
 app.use(koaSwagger({
@@ -23,4 +25,7 @@ app.use(koaSwagger({
       url: '/api.json', 
     },
 }))
-app.listen(4320);
+app.use(logger)
+app.use(errorCatch)
+app.use(router.routes()); 
+app.listen(4320,_=>console.log("服务器已启动"));

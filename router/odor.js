@@ -7,7 +7,7 @@ import apis from "../apis.json" assert { type: 'json' };
  * /odor:
  *   get:
  *     summary: 每日一句api
- *     description: Retrieve a list of users from JSONPlaceholder. Can be used to populate a list of fake users when prototyping or testing an API.
+ *     description: 转发请求到扇贝，获取扇贝的每日一句
  */
 
 router.get("/",async (ctx)=>{

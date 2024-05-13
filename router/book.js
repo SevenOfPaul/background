@@ -5,7 +5,6 @@ import bookContent from '../database/bookContent.js';
 import Book from '../database/book.js';
 import proValidate from "../validate/pro.js"
 import {isValidObjectId} from "mongoose"
-import {koaBody} from "koa-body";
 /**
  * @swagger
  * /book/content/{bookId}:
@@ -29,7 +28,6 @@ router.get("/all/:bookId", async (ctx) => {
         status: "200",
          data
     }
-  
 })
 router.post("/learned", async (ctx) => {
     const {bookId,pro}=ctx.request.body;

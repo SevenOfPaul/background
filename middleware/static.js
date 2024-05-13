@@ -5,11 +5,11 @@ import { fileURLToPath } from "url";
 import mime from "mime-types"
 const __filename = path.dirname(fileURLToPath(import.meta.url));
 export default async function (ctx, next) {
-    if (validator.blacklist(ctx.request.url, /^\/public/)) {
+    if (validator.matches(ctx.request.url, /^\/public/)) {
         const filePath = path.join(__filename, `../${ctx.request.url}`);
         if (fs.existsSync(filePath)) {
           ctx.type=mime.lookup(filePath)
-            ctx.body = fs.readFileSync(filePath)
+            ctx.body = fs.createReadStream(filePath)
         }else{
             throw new Error("目标文件不存在")
         }

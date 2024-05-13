@@ -13,9 +13,9 @@ import validator from "validator"
 
 router.get("/:text",async (ctx)=>{
     let params;
-    if(validator.blacklist(ctx.params.text,/[\u4e00-\u9fa5]/)){
+    if(validator.matches(ctx.params.text,/[\u4e00-\u9fa5]/)){
          params={text:ctx.params.text,from:"zh-CN",to:"en"}
-    }else if(validator.blacklist(ctx.params.text,(/[a-zA-Z]/))){
+    }else if(validator.matches(ctx.params.text,(/[a-zA-Z]/))){
          params={text:ctx.params.text,from:"en",to:"zh-CN"}
     }else{
      throw new Error("数据不合规")

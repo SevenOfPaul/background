@@ -5,17 +5,24 @@
     "@types/node": "^20.12.10",
     "axios": "^1.6.8",
     "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
     "koa-router": "^12.0.1",
     "koa-static": "^5.0.0",
     "koa2-swagger-ui": "^5.10.0",
+    "mime-type": "^4.0.0",
     "mongoose": "^8.3.4",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "swagger-jsdoc": "^6.2.8"
+    "swagger-jsdoc": "^6.2.8",
+    "validate": "^5.2.0",
+    "validator": "^13.12.0"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
   },
   "type": "module",
   "name": "background",
-  "version": "1.0.0",
+  "version": "0.02",
   "main": "index.js",
   "repository": "https://github.com/SevenOfPaul/background.git",
   "author": "<paul>",

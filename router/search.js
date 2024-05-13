@@ -14,7 +14,10 @@ router.get("/:word",async (ctx)=>{
  const data= await Content.find({word:{ $regex: `${ctx.params.word}` }});
 ctx.body={
     status:"200",
-    data:await searchDto(data)
+    data:{
+        code:200,
+        data:await searchDto(data)
+    }
 }
 })
 

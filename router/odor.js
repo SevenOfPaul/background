@@ -14,7 +14,10 @@ router.get("/",async (ctx)=>{
     const data= await http("GET",apis["odor"].api);
 ctx.body={
     status:"200",
-    data
+    data:{
+        code:200,
+        data
+    }
 }
 })
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 const __dirname = fileURLToPath(import.meta.url);
 //自定义打印函数
 export default async function  logger(level,logPath,message){
-       let info=level=="log"? `<h3 style="color:blue">${message}<h3/><hr/>`:`<h2 style="color:red">${message}<h2/><hr/>`
+       let info=level=="log"? `<h3 style="color:blue">${message}<h3/><hr/>`:`<h2 style="color:red">${message}<h2/><hr/>`;
         await fs.appendFile(path.join(__dirname,logPath), info);
         return true
 }

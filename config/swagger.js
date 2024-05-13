@@ -3,7 +3,7 @@ import swaggerJSDoc from 'swagger-jsdoc';
 //esm模块下的filename
 import { fileURLToPath } from "url";
 import * as path from 'path'
-global.__filename = fileURLToPath(import.meta.url);
+const __filename = path.dirname(fileURLToPath(import.meta.url));
 const swaggerDefinition = {
     info: {
         title: '英语书接口文档',
@@ -16,10 +16,9 @@ const swaggerDefinition = {
 // 通过路由获取生成的注解文件
 const options = {
     swaggerDefinition,
-    apis: [path.join(__filename,"../../router/*.js")], //配置路由router文件的位置
+    apis: [path.join(__filename,"../router/*.js")], //配置路由router文件的位置
 };
-const swaggerSpec = swaggerJSDoc(options)
-
+const swaggerSpec = swaggerJSDoc(options);
 
  export default Router().get('/api.json', async function (ctx) {
     ctx.set('Content-Type', 'application/json');

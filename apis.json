@@ -1,12 +1,26 @@
-{    
-           "odor":{
-            "api": "https://apiv3.shanbay.com/weapps/dailyquote/quote/",
-            "params": [
-                {
-                    "name": "date",
-                    "type": "TIMESTAMP"
-                }
-            ]
-        }
-    
+{
+    "odor": {
+        "api": "https://apiv3.shanbay.com/weapps/dailyquote/quote/",
+        "params": [
+            {
+                "name": "date",
+                "type": "TIMESTAMP"
+            }
+        ]
+    },
+    "transform": {
+        "api": "https://translate.appworlds.cn",
+        "params": [
+            {
+                "name":"text",
+                "type":"String"
+            },{
+                "name":"from",
+                "type":"String"
+            },{
+                "name":"to",
+                "type":"String"
+            }
+        ]
+    }
 }

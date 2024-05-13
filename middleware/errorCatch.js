@@ -1,13 +1,15 @@
 import logger from "../config/logger.js";
+import path from "node:path"
 export default async function (ctx, next) {
     try {
         await next();
     } catch (err) {
         // will only respond with JSON
         ctx.status = err.statusCode || err.status || 500;
-        await logger("error",path.join("../log/background.md",error))
+        await logger("error","../../log/background.md",err);
         ctx.body = {
-            message: "服务器出现问题，请联系管理员重试"
+           code:501,
+           message: `服务器出现问题，请联系管理员重试<br/>${err.message}`
         };
     }
 }

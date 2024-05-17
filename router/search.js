@@ -4,10 +4,10 @@ import searchDto from '../Res/search.js';
 const router = new Router();
 /**
  * @swagger
- * /search:
+ * /search/{word}:
  *   get:
- *     summary: 翻译单词或汉语
- *     description: 翻译单词或汉语
+ *     summary: 搜索指定单词
+ *     description: 根据word搜索指定单词
  */
 
 router.get("/:word",async (ctx)=>{

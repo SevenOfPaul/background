@@ -1,5 +1,4 @@
 import logger from "../config/logger.js";
-import path from "node:path"
 export default async function (ctx, next) {
     try {
         await next();
@@ -9,7 +8,7 @@ export default async function (ctx, next) {
         await logger("error","../../log/background.md",err);
         ctx.body = {
            code:501,
-           message: `服务器出现问题，请联系管理员重试<br/>${err.message}`
+           message:err.message==""?`服务器出现问题，请联系管理员重试<br/>`:err.message
         };
     }
 }

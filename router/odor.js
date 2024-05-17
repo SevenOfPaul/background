@@ -1,6 +1,6 @@
 import Router  from 'koa-router'; 
 const router = new Router();
-import http from "../http/index.js"
+import http from "../http/index.js";
 import apis from "../apis.json" assert { type: 'json' };
 /**
  * @swagger

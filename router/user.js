@@ -7,10 +7,17 @@ import User from '../database/user.js';
 import Book from "../database/book.js";
 import UserBook from "../database/userBook.js"
 import validator from 'validator';
+import path from "node:path";
+import { fileURLToPath } from "url";
+import generateToken from "../hooks/generateToken.js";
+const __filename = path.dirname(fileURLToPath(import.meta.url));
+import config from "../config/config.json" assert {type:"json"};
+import jwt from "jsonwebtoken";
 router.post("/sendMail", async (ctx) => {
-    //验证数据
     const { email } = ctx.request.body;
+        //验证数据
     if (!validator.isEmail(email)) throw new Error("数据格式错误");
+    if(await User.find({email}).length){ ctx.body = {status: "200",data: { code: 303,message: "该邮箱已注册"}};return}
     const verifyCode = nanoid();
     global.emailRedis.set(email, { verifyCode, time: new Date().getTime() });
     await sendMail(transporter, email, `${verifyCode}`);
@@ -24,13 +31,15 @@ router.post("/sendMail", async (ctx) => {
     }
 })
 router.post("/verify", async (ctx) => {
-    const { email, verifyCode, name, password } = ctx.request.body;
+    const { email, verifyCode, name, password,pic } = ctx.request.body;
        //验证数据
       //验证邮箱
     const res = global.emailRedis.get(email);
-    if (res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
-        const filePath = path.join(__filename, "../public/pictures/users/default.jpg");
+    console.log(email, verifyCode, name, password,global.emailRedis,res )
+    if (res&&res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
+        const filePath = path.join(__filename, pic?pic:"../public/pictures/users/default.jpg");
         const user = new User({ email, name, password,pic:filePath });
+        console.log(user)
         //存生词本
         const book=new Book({name:"生词本"});
         const userBook=new UserBook({bookId:book._id,userId:user._id});
@@ -42,11 +51,13 @@ router.post("/verify", async (ctx) => {
             status: "200",
             data: {
                 code: 200,
+                token:generateToken({email,id:user._id}),
                 message: "注册成功"
             }
         }
         return
     }
+    //-------------------
     ctx.body = {
         status: "200",
         data: {
@@ -56,8 +67,38 @@ router.post("/verify", async (ctx) => {
     }
 
 })
+router.post("/login", async (ctx) => {
+    //需要修改
+    if(ctx.headers.authorization) throw new Error("无需重新登陆");
+    const {email,password}=ctx.request.body;
+
+    if (!validator.isEmail(email)) throw new Error("数据格式错误");
+    const user=await User.find({email});
+    console.log(user)
+      if(password==await user[0].password){
+        //登陆成功
+        ctx.body = {
+            status: "200",
+            data: {
+                code: 200,
+                token:generateToken({email,id:user[0]._id}),
+                message: "登陆成功"
+            }
+        }
+        return
+      }else{
+        ctx.body = {
+            status: "200",
+            data: {
+                code: 302,
+                message: "密码错误"
+            }
+        }
+      }
+})
 router.post("/addPic", maxFile(512 * 512), async (ctx) => {
-    //userI从jwt中获取
+    //userId从jwt中获取
+    const userId=jwt.verify(ctx.headers.authorization,config.secret);
     const { pic } = ctx.request.files;
     const fileReader = fs.createReadStream(pic.filepath);
     const filePath = `${path.join(__filename, "../public/pictures/users/")}${nanoid()}.jpg`;
@@ -72,7 +113,7 @@ router.post("/addPic", maxFile(512 * 512), async (ctx) => {
 })
 router.post("/changePassword", async (ctx) => {
     //userId,email从jwt中获取
-    const userId = "";
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
     const { password } = ctx.request.body;
     if (res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
         Book, updateOne({ _id: userId }, { password });
@@ -93,7 +134,7 @@ router.post("/changePassword", async (ctx) => {
 })
 router.post("/changeProfile", async (ctx) => {
     //userId从jwt中获取
-    const userId = "";
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
     const { name, pic } = ctx.request.body;
     Book, updateOne({ _id: userId }, { name, pic });
     ctx.body = {

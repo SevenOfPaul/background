@@ -1,6 +1,6 @@
 import Router  from 'koa-router'; 
 import Content from '../database/content.js';
-import searchDto from '../Res/search.js';
+import searchDto from '../hooks/search.js';
 const router = new Router();
 /**
  * @swagger

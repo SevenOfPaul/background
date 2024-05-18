@@ -14,6 +14,9 @@ import {koaBody} from "koa-body";
 mongoose.connect('mongodb://127.0.0.1:27017/english');
 const db=await mongoose.connection;
 import _static from "./middleware/static.js";
+import config from "./config/config.json" assert {type: "json"}
+import koaJwt from "koa-jwt";
+import auth from "./middleware/auth.js";
 //配置map
 global.redis=new Map();
 //配置swagger文档
@@ -27,7 +30,7 @@ app.use(koaSwagger({
 app.use(koaCors({origin:"*"}))
 app.use(_static)
 app.use(logger)
-// app.use(errorCatch)
+app.use(errorCatch)
 app.use(koaBody({
   multipart: true, 
   formidable: {
@@ -35,5 +38,7 @@ app.use(koaBody({
     multipart: true // 是否支持 multipart-formdate 的表单
   }
 }))
+app.use(auth([/book/]));
+app.use( koaJwt({ secret: config.secret}).unless({path:[/./]}));
 app.use(router.routes()); 
 app.listen(4320,_=>console.log("服务器已启动"));

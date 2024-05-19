@@ -11,6 +11,8 @@ import {nanoid} from "nanoid";
 import path from "path"
 import maxFile from '../middleware/maxFile.js';
 const __filename = path.dirname(fileURLToPath(import.meta.url));
+import mountValidate from '../middleware/mountValidate.js';
+import validator from 'validator';
 /**
  * @swagger
  * /book/content/{bookId}:
@@ -18,7 +20,7 @@ const __filename = path.dirname(fileURLToPath(import.meta.url));
  *     summary: Json类型的单词数组.
  *     description: 根据提交的书记api获取全部单词
  */
-router.get("/all/:bookId", async (ctx) => {
+router.get("/all/:bookId", mountValidate({bookId:isValidObjectId}),async (ctx) => {
     const contentIds = await bookContent.find({ bookId: ctx.params.bookId }).select("contentId");
     let data = [];
     for (let c of contentIds) data.push(await Content.findById(c.contentId));
@@ -41,8 +43,7 @@ router.get("/add/:name", async (ctx) => {
          }
     }
 })
-router.get("/remove/:bookId", async (ctx) => {
-    if(!isValidObjectId(ctx.params.bookId)) throw new Error("数据格式错误")
+router.get("/remove/:bookId",mountValidate({bookId:isValidObjectId}), async (ctx) => {
     await Book.deleteOne({_id:ctx.params.bookId});
     ctx.body={
         status: "200",
@@ -61,7 +62,7 @@ router.get("/remove/:bookId", async (ctx) => {
  *     description: 根据目标获取今天学习的单词.
  *   
  */
-router.post("/contentOfGoal", async (ctx) => {
+router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validator.isInt}), async (ctx) => {
     let {bookId,goal}=ctx.request.body;
     //先确定目标单词数量
     const book = await Book.findById(bookId);
@@ -96,7 +97,7 @@ router.post("/contentOfGoal", async (ctx) => {
  *     description: 提交bookId和goal设置学习目标.
  *   
  */
-router.post("/setGoal", async (ctx) => {
+router.post("/setGoal",mountValidate({bookId:isValidObjectId,goal:validator.isInt}), async (ctx) => {
     let {bookId,goal}=ctx.request.body;
     await Book.updateOne({_Id:bookId},{goal});
     //先确定目标单词数量
@@ -117,7 +118,7 @@ router.post("/setGoal", async (ctx) => {
  *     description: 根据bookId和pro学习完成 修改学习进度.
  *   
  */
-router.post("/learned", async (ctx) => {
+router.post("/learned", mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}),async (ctx) => {
     //需要修改
     let {bookId,contentId,initial}=ctx.request.body;
     if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
@@ -149,7 +150,7 @@ router.post("/learned", async (ctx) => {
  *     description: 根据bookId和contentId添加指定单词到单词书
  *   
  */
-router.post("/addWords", async (ctx) => {
+router.post("/addWords", mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}), async (ctx) => {
     const {bookId,contentId}=ctx.request.body;
     if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
     const newBookContent=new BookContent({bookId,contentId});
@@ -167,7 +168,7 @@ router.post("/addWords", async (ctx) => {
  *     description: 根据bookId和contentId删除指定单词到单词书
  *   
  */
-router.post("/removeWords", async (ctx) => {
+router.post("/removeWords",mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}), async (ctx) => {
     const {bookId,contentId}=ctx.request.body;
     if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
      await BookContent.deleteOne({bookId,contentId});
@@ -185,7 +186,7 @@ router.post("/removeWords", async (ctx) => {
  *     description: 提交单词书封面，数据大小不超过512kb
  *   
  */
-router.post("/addPic",maxFile(512*512), async (ctx) => {
+router.post("/addPic",mountValidate({bookId:isValidObjectId}),maxFile(512*512), async (ctx) => {
         const {bookId}=ctx.request.body;
         const {pic}=ctx.request.files;
         const fileReader= fs.createReadStream(pic.filepath);

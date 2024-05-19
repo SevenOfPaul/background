@@ -845,4 +845,118 @@
     header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 10:45:16 GMT+0800 (中国标准时间)<br/>
     路径：/public/pictures/books/default.jpg
     <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:36:27 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:36:52 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:37:26 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'params')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:37:46 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'params')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:38:06 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/:663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'params')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:38:14 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'params')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:38:45 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'params')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:39:35 GMT+0800 (中国标准时间)<br/>
+    路径：/book/content
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:39:41 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:40:27 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:40:39 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:47:29 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validator[validates[idx]] is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:47:50 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:47:59 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">Error: 数据格式错误<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:48:02 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:50:55 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validate.method is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:50:57 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validate.method is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:51:55 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validates[key] is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:51:59 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validates[key] is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:52:31 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validates[key] is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:52:53 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">TypeError: validates[key] is not a function<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:54:23 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">ReferenceError: key is not defined<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:54:42 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">ReferenceError: validate is not defined<h2/><hr/><h3 style="color:blue">Sun May 19 2024 13:54:52 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 13:59:40 GMT+0800 (中国标准时间)<br/>
+    路径：/book/learned
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h2 style="color:red">TypeError: Cannot destructure property 'bookId' of 'ctx.request.body' as it is undefined.<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:00:12 GMT+0800 (中国标准时间)<br/>
+    路径：/book/learned
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h2 style="color:red">TypeError: Cannot destructure property 'bookId' of 'ctx.request.body' as it is undefined.<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:11:33 GMT+0800 (中国标准时间)<br/>
+    路径：/book/learned
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h2 style="color:red">Error: 数据格式错误<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:11:37 GMT+0800 (中国标准时间)<br/>
+    路径：/
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:11:41 GMT+0800 (中国标准时间)<br/>
+    路径：/removeWords
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:11:42 GMT+0800 (中国标准时间)<br/>
+    路径：/removeWords
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:11:44 GMT+0800 (中国标准时间)<br/>
+    路径：/removeWords
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:11:51 GMT+0800 (中国标准时间)<br/>
+    路径：/book/removeWords
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h2 style="color:red">TypeError: Cannot read properties of undefined (reading 'bookId')<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:12:34 GMT+0800 (中国标准时间)<br/>
+    路径：/book/removeWords
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"0"}<h3/><br/><h2 style="color:red">Error: 数据格式错误<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:12:39 GMT+0800 (中国标准时间)<br/>
+    路径：/add
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:12:40 GMT+0800 (中国标准时间)<br/>
+    路径：/add
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h3 style="color:blue">Sun May 19 2024 14:12:42 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">Error: 数据格式错误<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:12:44 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
+    header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/><h2 style="color:red">Error: 数据格式错误<h2/><hr/><h3 style="color:blue">Sun May 19 2024 14:13:06 GMT+0800 (中国标准时间)<br/>
+    路径：/book/all/663e301a29e2ed143ac39fb2
+    <br/>
     header:{"user-agent":"Apifox/1.0.0 (https://apifox.com)","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImcxMzEzNjkxODI3M0BnbWFpbC5jb20iLCJpZCI6IjY2NDhiMzE0MmM3Njc0ZGYwNDI3YzVlOSIsImlhdCI6MTcxNjA0MDQ2OCwiZXhwIjoxNzE4NjMyNDY4fQ.XVdmLxRdh-7TUzQSIw5nWRiYZAzrt1cvzepJCRUUNzA","accept":"*/*","host":"localhost:4320","accept-encoding":"gzip, deflate, br","connection":"keep-alive"}<h3/><br/>

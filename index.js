@@ -36,7 +36,7 @@ app.use(koaBody({
     multipart: true // 是否支持 multipart-formdate 的表单
   }
 }))
-app.use(auth([/book/,/pictures/],[/Profile/]));
+// app.use(auth([/book/,/pictures/],[/Profile/]));
 app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
 app.use(koaCors({origin:"*"}));
 app.use(_static);

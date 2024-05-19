@@ -13,10 +13,10 @@ import generateToken from "../hooks/generateToken.js";
 const __filename = path.dirname(fileURLToPath(import.meta.url));
 import config from "../config/config.json" assert {type:"json"};
 import jwt from "jsonwebtoken";
-router.post("/sendMail", async (ctx) => {
+import mountValidate from '../middleware/mountValidate.js';
+router.post("/sendMail",mountValidate({email:validator.isEmail}), async (ctx) => {
     const { email } = ctx.request.body;
         //验证数据
-    if (!validator.isEmail(email)) throw new Error("数据格式错误");
     if(await User.find({email}).length){ ctx.body = {status: "200",data: { code: 303,message: "该邮箱已注册"}};return}
     const verifyCode = nanoid();
     global.emailRedis.set(email, { verifyCode, time: new Date().getTime() });
@@ -30,7 +30,7 @@ router.post("/sendMail", async (ctx) => {
         }
     }
 })
-router.post("/verify", async (ctx) => {
+router.post("/verify",mountValidate({email:validator.isEmail,password:validator.isMD5}), async (ctx) => {
     const { email, verifyCode, name, password,pic } = ctx.request.body;
        //验证数据
       //验证邮箱
@@ -39,7 +39,6 @@ router.post("/verify", async (ctx) => {
     if (res&&res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
         const filePath = path.join(__filename, pic?pic:"../public/pictures/users/default.jpg");
         const user = new User({ email, name, password,pic:filePath });
-        console.log(user)
         //存生词本
         const book=new Book({name:"生词本"});
         const userBook=new UserBook({bookId:book._id,userId:user._id});
@@ -67,11 +66,10 @@ router.post("/verify", async (ctx) => {
     }
 
 })
-router.post("/login", async (ctx) => {
+router.post("/login",mountValidate({email:validator.isEmail}), async (ctx) => {
     //需要修改
     if(ctx.headers.authorization) throw new Error("无需重新登陆");
     const {email,password}=ctx.request.body;
-    if (!validator.isEmail(email)) throw new Error("数据格式错误");
     const user=await User.find({email});
     console.log(user)
       if(password==await user[0].password){
@@ -110,7 +108,7 @@ router.post("/addPic", maxFile(512 * 512), async (ctx) => {
         data: { code: 200, message: "封面添加成功", filePath }
     }
 })
-router.post("/changePassword", async (ctx) => {
+router.post("/changePassword",mountValidate({password:validator.isMD5}), async (ctx) => {
     //userId,email从jwt中获取
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
     const { password } = ctx.request.body;

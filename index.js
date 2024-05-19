@@ -27,10 +27,8 @@ app.use(koaSwagger({
       url: '/api.json', 
     },
 }))
-app.use(koaCors({origin:"*"}))
-app.use(_static)
-app.use(logger)
-app.use(errorCatch)
+app.use(errorCatch);
+app.use(logger);
 app.use(koaBody({
   multipart: true, 
   formidable: {
@@ -38,7 +36,9 @@ app.use(koaBody({
     multipart: true // 是否支持 multipart-formdate 的表单
   }
 }))
-app.use(auth([/book/]));
-app.use( koaJwt({ secret: config.secret}).unless({path:[/./]}));
+app.use(auth([/book/,/pictures/],[/Profile/]));
+app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
+app.use(koaCors({origin:"*"}));
+app.use(_static);
 app.use(router.routes()); 
 app.listen(4320,_=>console.log("服务器已启动"));

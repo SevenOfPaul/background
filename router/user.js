@@ -51,7 +51,7 @@ router.post("/verify", async (ctx) => {
             status: "200",
             data: {
                 code: 200,
-                token:generateToken({email,id:user._id}),
+                token:generateToken({email,userId:user._id}),
                 message: "注册成功"
             }
         }
@@ -71,7 +71,6 @@ router.post("/login", async (ctx) => {
     //需要修改
     if(ctx.headers.authorization) throw new Error("无需重新登陆");
     const {email,password}=ctx.request.body;
-
     if (!validator.isEmail(email)) throw new Error("数据格式错误");
     const user=await User.find({email});
     console.log(user)
@@ -81,7 +80,7 @@ router.post("/login", async (ctx) => {
             status: "200",
             data: {
                 code: 200,
-                token:generateToken({email,id:user[0]._id}),
+                token:generateToken({email,userId:user[0]._id}),
                 message: "登陆成功"
             }
         }
@@ -116,7 +115,7 @@ router.post("/changePassword", async (ctx) => {
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
     const { password } = ctx.request.body;
     if (res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
-        Book, updateOne({ _id: userId }, { password });
+       await Book.updateOne({ _id: userId }, { password });
         ctx.body = {
             status: "200",
             data: { code: 200, message: "密码修改成功" }
@@ -132,11 +131,20 @@ router.post("/changePassword", async (ctx) => {
         }
     }
 })
+router.get("/getProfile", async (ctx) => {
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const data= await User.findById(userId,{_id:1,name:1,crate_at:1,email:1,pic:1});
+    ctx.body = {
+        status: "200",
+        data: { code: 200, data }
+    }
+})
 router.post("/changeProfile", async (ctx) => {
     //userId从jwt中获取
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
     const { name, pic } = ctx.request.body;
-    Book, updateOne({ _id: userId }, { name, pic });
+   await Book.updateOne({ _id: userId }, { name, pic });
+   console.log(ctx.response);
     ctx.body = {
         status: "200",
         data: { code: 200, message: "信息修改成功" }

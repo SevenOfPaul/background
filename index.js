@@ -41,4 +41,4 @@ app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
 app.use(koaCors({origin:"*"}));
 app.use(_static);
 app.use(router.routes()); 
-app.listen(4320,_=>console.log("服务器已启动"));
+app.listen(4320,_=>console.log("服务器已启动,http://localhost:4320"));

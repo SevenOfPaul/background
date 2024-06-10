@@ -4,7 +4,7 @@ import Content from '../database/content.js';
 import bookContent from '../database/bookContent.js';
 import Book from '../database/book.js';
 import fs from "node:fs";
-import {Schema, isValidObjectId} from "mongoose"
+import { isValidObjectId} from "mongoose"
 import BookContent from '../database/bookContent.js';
 import { fileURLToPath } from "url";
 import {nanoid} from "nanoid";
@@ -13,13 +13,28 @@ import maxFile from '../middleware/maxFile.js';
 const __filename = path.dirname(fileURLToPath(import.meta.url));
 import mountValidate from '../middleware/mountValidate.js';
 import validator from 'validator';
-/**
- * @swagger
- * /book/content/{bookId}:
- *   get:
- *     summary: Json类型的单词数组.
- *     description: 根据提交的书记api获取全部单词
- */
+import userBook from "../database/userBook.js";
+import jwt from "jsonwebtoken";
+import config from "../config/config.json" assert {type:"json"};
+import User from "../database/user.js"
+
+router.get("/",async (ctx) => {
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const user=await User.findById(userId);
+    const contentIds = await bookContent.find({bookId:user.studyingBookId}).select("contentId");
+   const book= await Book.findById(user.studyingBookId);
+    book.pic=path.join("http://localhost:4320", book.pic);
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data:{
+                  book,
+                  quantity:contentIds.length
+            }
+        }
+    }
+})
 router.get("/all/:bookId", mountValidate({bookId:isValidObjectId}),async (ctx) => {
     const contentIds = await bookContent.find({ bookId: ctx.params.bookId }).select("contentId");
     let data = [];
@@ -30,6 +45,96 @@ router.get("/all/:bookId", mountValidate({bookId:isValidObjectId}),async (ctx) =
             code:200,
             data
          }
+    }
+})
+router.get("/desk",async (ctx) => {
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const books=await userBook.find({userId});
+     const data=[];
+     for(let v of books){
+         let book=await Book.findById(v.bookId);
+         book.pic=path.join("http://localhost:4320", book.pic);
+         data.push(book);
+     };
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data
+        }
+    }
+})
+router.post("/study/page",async (ctx) => {
+    const {page,bookId,number,pro} = ctx.request.body;
+    const contentIds = await bookContent.find({ bookId }).select("contentId").skip(parseInt(pro)+parseInt(page*number)).limit(number);
+    let data = [];
+    for (let c of contentIds) data.push(await Content.findById(c.contentId));
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data
+        }
+    }
+})
+router.post("/learned/page",async (ctx) => {
+    const {page,bookId,number,pro} = ctx.request.body;
+    const contentIds = await bookContent.find({ bookId }).select("contentId")
+        .skip(page*number).limit(number);
+    let data = [];
+    for (let c of contentIds) data.push(await Content.findById(c.contentId));
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data
+        }
+    }
+})
+router.post("/new/page",async (ctx) => {
+    const {page,bookId,number,pro} = ctx.request.body;
+    const skip=parseInt(pro)+parseInt(page*number)>=0?parseInt(pro)+parseInt(page*number):0;
+    const contentIds = await bookContent.find({ bookId })
+        .select("contentId")
+        .skip(skip).limit(number);
+    let data = [];
+    for (let c of contentIds) data.push(await Content.findById(c.contentId));
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data
+        }
+    }
+})
+router.post("/review/page",async (ctx) => {
+    const {page,bookId,number,pro,goal} = ctx.request.body;
+    const skip=parseInt(pro)+parseInt(page*number)-parseInt(goal*3)>=0?parseInt(pro)+parseInt(page*number)-parseInt(goal*3):0;
+    const contentIds = await bookContent.find({ bookId })
+        .select("contentId")
+        .skip(skip).limit(number);
+    let data = [];
+    for (let c of contentIds) data.push(await Content.findById(c.contentId));
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            data
+        }
+    }
+})
+router.post("/learned",async (ctx) => {
+    const {todayFinished,bookId} = ctx.request.body;
+    const book = await Book.findById(bookId);
+     book.todayFinished=todayFinished;
+    await book.save();
+    console.log(book)
+    ctx.body={
+        status: "200",
+        data:{
+            code:200,
+            message:"保存完成"
+        }
     }
 })
 router.get("/add/:name", async (ctx) => {
@@ -54,16 +159,8 @@ router.get("/remove/:bookId",mountValidate({bookId:isValidObjectId}), async (ctx
     }
 })
 
-/**
- * @swagger
- * /book/contentOfGoal:
- *   post:
- *     summary: 获取今天学习的单词.
- *     description: 根据目标获取今天学习的单词.
- *   
- */
 router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validator.isInt}), async (ctx) => {
-    let {bookId,goal}=ctx.request.body;
+    let {bookId,goal,todayFinished}=ctx.request.body;
     //先确定目标单词数量
     const book = await Book.findById(bookId);
     if(book.finished){
@@ -76,11 +173,10 @@ router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validato
         }
         return ;
     }
-    const {initial,num}=JSON.parse(book.pro);
-    goal=goal+num<goal*3?num:goal*3;
+    goal=parseInt(goal)+(book.pro<=goal*3?book.pro:goal*3);
     const contentIds = (await bookContent.find({bookId},{_id:0,bookId:0})).map(c=>c.contentId);
     let data=[];
-    data.push(...await Content.find({_id:{$in:contentIds},initial}).skip(goal==num?0:num).limit(goal));
+    data.push(...await Content.find({_id:{$in:contentIds}}).skip(goal==book.pro?0:book.pro+parseInt(todayFinished)).limit(goal));
     ctx.body={
         status: "200",
          data:{
@@ -89,19 +185,39 @@ router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validato
          }
     }
 })
-/**
- * @swagger
- * /book/setGoal:
- *   post:
- *     summary: 设置学习目标
- *     description: 提交bookId和goal设置学习目标.
- *   
- */
-router.post("/setGoal",mountValidate({bookId:isValidObjectId,goal:validator.isInt}), async (ctx) => {
-    let {bookId,goal}=ctx.request.body;
+router.get("/getStudyBook", async (ctx) => {
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const user=await User.findById(userId);
+     const data=await Book.findById(user.studyingBookId);
+    data.pic=path.join("http://localhost:4320", data.pic);
+ ctx.body={
+     status:200,
+     data:{
+         code:200,
+         data
+     }
+ }
+})
+router.get("/changeStudyBook", async (ctx) => {
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const {bookId}=ctx.request.query;
+  await User.updateOne({_id:userId},{studyingBookId:bookId});
+    ctx.body={
+        status:200,
+        data:{
+            code:200,
+            message:"修改完毕,刷新后显示"
+        }
+    }
+})
+router.post("/settings", async (ctx) => {
+    let {bookId,goal,sequence}=ctx.request.body;
     await Book.updateOne({_Id:bookId},{goal});
     //先确定目标单词数量
     const book = await Book.findById(bookId);
+    book.goal=goal
+    book.sequence=sequence
+     await book.save();
     ctx.body={
         status: "200",
         data:{
@@ -110,46 +226,6 @@ router.post("/setGoal",mountValidate({bookId:isValidObjectId,goal:validator.isIn
         }
     }
 })
-/**
- * @swagger
- * /book/learned:
- *   post:
- *     summary: 学习完成 修改学习进度
- *     description: 根据bookId和pro学习完成 修改学习进度.
- *   
- */
-router.post("/learned", mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}),async (ctx) => {
-    //需要修改
-    let {bookId,contentId,initial}=ctx.request.body;
-    if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
-     const contents=(await Content.find({initial})).map(c=>c._id);
-     let idx=contents.findIndex(c=>c==contentId);
-     if(idx==contents.length-1){
-        if(initial=="Z"){
-           await Book.updateOne({_id:bookId},{finished:1});
-        ctx.body={
-            status: "200",
-            data: {code:200,message:"恭喜学习完成"}
-        }
-        return ;
-        }
-        initial=String.fromCharCode(initial.charCodeAt()+1); 
-        idx=0;   
-     }
-     await Book.updateOne({_id:bookId},{pro:JSON.stringify({initial,num:idx})});
-     ctx.body=ctx.body?ctx.body:{
-        status: "200",
-        data: {code:200,message:"输入完成"}
-    }
-})
-/**
- * @swagger
- * /book/addWords:
- *   post:
- *     summary: 添加指定单词到单词书
- *     description: 根据bookId和contentId添加指定单词到单词书
- *   
- */
 router.post("/addWords", mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}), async (ctx) => {
     const {bookId,contentId}=ctx.request.body;
     if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
@@ -160,14 +236,6 @@ router.post("/addWords", mountValidate({bookId:isValidObjectId,contentId:isValid
         data: {code:200,message:"单词已添加完成"}
     }
 })
-/**
- * @swagger
- * /book/removeWords:
- *   post:
- *     summary: 从指定单词书中删除单词
- *     description: 根据bookId和contentId删除指定单词到单词书
- *   
- */
 router.post("/removeWords",mountValidate({bookId:isValidObjectId,contentId:isValidObjectId}), async (ctx) => {
     const {bookId,contentId}=ctx.request.body;
     if(!isValidObjectId(bookId)||!isValidObjectId(contentId)) throw new Error("数据不合规");
@@ -178,14 +246,6 @@ router.post("/removeWords",mountValidate({bookId:isValidObjectId,contentId:isVal
     }
 })
 
-/**
- * @swagger
- * /book/addPic:
- *   post:
- *     summary: 提交单词书书封
- *     description: 提交单词书封面，数据大小不超过512kb
- *   
- */
 router.post("/addPic",mountValidate({bookId:isValidObjectId}),maxFile(512*512), async (ctx) => {
         const {bookId}=ctx.request.body;
         const {pic}=ctx.request.files;

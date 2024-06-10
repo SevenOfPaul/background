@@ -12,13 +12,15 @@ const router = new Router();
  *     description: 根据word搜索指定单词
  */
 
-router.get("/:word",mountValidate({word:validator.isAscii}),async (ctx)=>{
+router.get("/:word",async (ctx)=>{
  const data= await Content.find({word:{ $regex: `${ctx.params.word}` }});
+ const result=await searchDto(data);
 ctx.body={
     status:"200",
     data:{
-        code:200,
-        data:await searchDto(data)
+        code:result.find?200:404,
+		message:result.message,
+        data:result.data
     }
 }
 })

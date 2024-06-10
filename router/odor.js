@@ -2,6 +2,8 @@ import Router  from 'koa-router';
 const router = new Router();
 import http from "../http/index.js";
 import apis from "../apis.json" assert { type: 'json' };
+import jwt from "jsonwebtoken";
+import config from "../config/config.json" assert { type: 'json' };
 /**
  * @swagger
  * /odor:

@@ -17,6 +17,7 @@ import _static from "./middleware/static.js";
 import config from "./config/config.json" assert {type: "json"}
 import koaJwt from "koa-jwt";
 import auth from "./middleware/auth.js";
+import book from "./database/book.js";
 //配置map
 global.redis=new Map();
 //配置swagger文档
@@ -27,7 +28,7 @@ app.use(koaSwagger({
       url: '/api.json', 
     },
 }))
-app.use(errorCatch);
+// app.use(errorCatch);
 app.use(logger);
 app.use(koaBody({
   multipart: true, 
@@ -36,9 +37,11 @@ app.use(koaBody({
     multipart: true // 是否支持 multipart-formdate 的表单
   }
 }))
-// app.use(auth([/book/,/pictures/],[/Profile/]));
-app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
 app.use(koaCors({origin:"*"}));
 app.use(_static);
-app.use(router.routes()); 
+app.use(auth([/book/],[/Profile/]));
+app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
+app.use(router.routes());
+//每天刷新
+await book.updateMany({},{todayFinished:0});
 app.listen(4320,_=>console.log("服务器已启动,http://localhost:4320"));

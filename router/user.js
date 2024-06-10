@@ -9,6 +9,7 @@ import UserBook from "../database/userBook.js"
 import validator from 'validator';
 import path from "node:path";
 import { fileURLToPath } from "url";
+import fs from "fs"
 import generateToken from "../hooks/generateToken.js";
 const __filename = path.dirname(fileURLToPath(import.meta.url));
 import config from "../config/config.json" assert {type:"json"};
@@ -25,7 +26,6 @@ router.post("/sendMail",mountValidate({email:validator.isEmail}), async (ctx) =>
         status: "200",
         data: {
             code: 200,
-            verify: verifyCode,
             message: "已发送至邮箱"
         }
     }
@@ -35,9 +35,9 @@ router.post("/verify",mountValidate({email:validator.isEmail,password:validator.
        //验证数据
       //验证邮箱
     const res = global.emailRedis.get(email);
-    console.log(email, verifyCode, name, password,global.emailRedis,res )
-    if (res&&res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
-        const filePath = path.join(__filename, pic?pic:"../public/pictures/users/default.jpg");
+	  // if(!res)throw new Error("未查询到邮件，请确认");
+    // if (res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
+        const filePath = path.join(pic?pic:"../public/pictures/users/default.jpg");
         const user = new User({ email, name, password,pic:filePath });
         //存生词本
         const book=new Book({name:"生词本"});
@@ -50,12 +50,12 @@ router.post("/verify",mountValidate({email:validator.isEmail,password:validator.
             status: "200",
             data: {
                 code: 200,
-                token:generateToken({email,userId:user._id}),
+                data:{token:generateToken({email,userId:user._id}),pic,name,create_at:user.create_at},
                 message: "注册成功"
             }
         }
         return
-    }
+    // }
     //-------------------
     ctx.body = {
         status: "200",
@@ -66,20 +66,21 @@ router.post("/verify",mountValidate({email:validator.isEmail,password:validator.
     }
 
 })
-router.post("/login",mountValidate({email:validator.isEmail}), async (ctx) => {
+router.post("/login",mountValidate({email:validator.isEmail,password:validator.isMD5}), async (ctx) => {
     //需要修改
     if(ctx.headers.authorization) throw new Error("无需重新登陆");
     const {email,password}=ctx.request.body;
     const user=await User.find({email});
-    console.log(user)
+    if(!user.length) throw new Error("请先注册")
       if(password==await user[0].password){
         //登陆成功
+          pic="http://locahost:4320"+pic;
         ctx.body = {
             status: "200",
             data: {
                 code: 200,
-                token:generateToken({email,userId:user[0]._id}),
-                message: "登陆成功"
+                message: "登陆成功",
+				data:{  token:generateToken({email,userId:user[0]._id}),pic,name,create_at:user.create_at}
             }
         }
         return
@@ -95,25 +96,26 @@ router.post("/login",mountValidate({email:validator.isEmail}), async (ctx) => {
 })
 router.post("/addPic", maxFile(512 * 512), async (ctx) => {
     //userId从jwt中获取
-    const userId=jwt.verify(ctx.headers.authorization,config.secret);
     const { pic } = ctx.request.files;
     const fileReader = fs.createReadStream(pic.filepath);
     const filePath = `${path.join(__filename, "../public/pictures/users/")}${nanoid()}.jpg`;
     const fileHandler = fs.createWriteStream(filePath);
-    Book, updateOne({ _id: userId }, { pic: filePath });
     //把读流中的数据写入到写流中
     fileReader.pipe(fileHandler);
     ctx.body = {
         status: "200",
-        data: { code: 200, message: "封面添加成功", filePath }
+        data: { code: 200, message: "头像上传成功", data:`${path.join("../public/pictures/users/")}${nanoid()}.jpg` }
     }
 })
-router.post("/changePassword",mountValidate({password:validator.isMD5}), async (ctx) => {
+router.post("/changePassword",mountValidate({newPassword:validator.isMD5}), async (ctx) => {
     //userId,email从jwt中获取
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
-    const { password } = ctx.request.body;
+    const {newPassword, verifyCode } = ctx.request.body;
+	  const res = global.emailRedis.get(email);
+	  if(!res)throw new Error("未查询到邮件，请确认");
+	 
     if (res.verifyCode == verifyCode && new Date().getTime() - res.time <= 60 * 1000) {
-       await Book.updateOne({ _id: userId }, { password });
+       await Book.updateOne({ _id: userId }, { newPassword });
         ctx.body = {
             status: "200",
             data: { code: 200, message: "密码修改成功" }
@@ -131,7 +133,8 @@ router.post("/changePassword",mountValidate({password:validator.isMD5}), async (
 })
 router.get("/getProfile", async (ctx) => {
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
-    const data= await User.findById(userId,{_id:1,name:1,crate_at:1,email:1,pic:1});
+    const data= await User.findById(userId,{_id:1,name:1,create_at:1,email:1,pic:1});
+    data.pic=path.join("http://localhost:4320", data.pic);
     ctx.body = {
         status: "200",
         data: { code: 200, data }

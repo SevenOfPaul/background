@@ -3,6 +3,8 @@ const router = new Router();
 import http from "../http/index.js"
 import apis from "../apis.json" assert { type: 'json' };
 import validator from "validator"
+import jwt from "jsonwebtoken";
+import config from "../config/config.json"  assert { type: 'json' };
 /**
  * @swagger
  * /transform:
@@ -22,7 +24,10 @@ router.get("/:text",async (ctx)=>{
     }
 ctx.body={
     status:"200",
-    data: await http("GET",apis["transform"].api,params)
+    data:{
+        code:200,
+        data:await http("GET",apis["transform"].api,params)
+    }
 }
 })
 

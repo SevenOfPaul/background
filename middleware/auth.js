@@ -4,7 +4,7 @@ import generateToken from "../hooks/generateToken.js";
 export default function(paths,freshPath){
     return async function(ctx,next){
         ctx.header.authorization= ctx.header.authorization?ctx.header.authorization=ctx.header.authorization.split(" ")[1]:undefined;
-        if(paths.some(p=>ctx.url.match(p))||jwt.verify(ctx.header.authorization,config.secret)){
+        if(paths.some(p=>ctx.url.match(p))&&!jwt.verify(ctx.header.authorization,config.secret)){
             ctx.body={
                 status:"200",
                 code:401,

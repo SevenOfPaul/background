@@ -39,8 +39,8 @@ app.use(koaBody({
 }))
 app.use(koaCors({origin:"*"}));
 app.use(_static);
-app.use(auth([/book/],[/Profile/]));
 app.use(koaJwt({ secret: config.secret}).unless({path:[/./]}));
+app.use(auth([/book/],[/Profile/]));
 app.use(router.routes());
 //每天刷新
 await book.updateMany({},{todayFinished:0});

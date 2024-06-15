@@ -159,7 +159,7 @@ router.get("/remove/:bookId",mountValidate({bookId:isValidObjectId}), async (ctx
     }
 })
 
-router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validator.isInt}), async (ctx) => {
+router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId}), async (ctx) => {
     let {bookId,goal,todayFinished}=ctx.request.body;
     //先确定目标单词数量
     const book = await Book.findById(bookId);
@@ -174,6 +174,7 @@ router.post("/contentOfGoal",mountValidate({bookId:isValidObjectId,goal:validato
         return ;
     }
     goal=parseInt(goal)+(book.pro<=goal*3?book.pro:goal*3);
+
     const contentIds = (await bookContent.find({bookId},{_id:0,bookId:0})).map(c=>c.contentId);
     let data=[];
     data.push(...await Content.find({_id:{$in:contentIds}}).skip(goal==book.pro?0:book.pro+parseInt(todayFinished)).limit(goal));

@@ -20,7 +20,7 @@ ctx.body={
     data:{
         code:result.find?200:404,
 		message:result.message,
-        data:result.data
+        data:result.data[0]
     }
 }
 })

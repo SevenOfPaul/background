@@ -15,6 +15,7 @@ const __filename = path.dirname(fileURLToPath(import.meta.url));
 import config from "../config/config.json" assert {type:"json"};
 import jwt from "jsonwebtoken";
 import mountValidate from '../middleware/mountValidate.js';
+import bookContent from "../database/bookContent.js";
 router.post("/sendMail",mountValidate({email:validator.isEmail}), async (ctx) => {
     const { email } = ctx.request.body;
         //验证数据
@@ -50,7 +51,7 @@ router.post("/verify",mountValidate({email:validator.isEmail,password:validator.
             status: "200",
             data: {
                 code: 200,
-                data:{token:generateToken({email,userId:user._id}),pic,name,create_at:user.create_at},
+                data:{token:generateToken({email,userId:user._id}),pic,name,create_at:user.create_at,studyingBookId:book._id},
                 message: "注册成功"
             }
         }
@@ -74,13 +75,13 @@ router.post("/login",mountValidate({email:validator.isEmail,password:validator.i
     if(!user.length) throw new Error("请先注册")
       if(password==await user[0].password){
         //登陆成功
-          pic="http://locahost:4320"+pic;
+        let  pic="http://locahost:4320"+user.pic;
         ctx.body = {
             status: "200",
             data: {
                 code: 200,
                 message: "登陆成功",
-				data:{  token:generateToken({email,userId:user[0]._id}),pic,name,create_at:user.create_at}
+				data:{  token:generateToken({email,userId:user[0]._id}),pic,user:user[0].name,create_at:user[0].create_at}
             }
         }
         return
@@ -133,8 +134,9 @@ router.post("/changePassword",mountValidate({newPassword:validator.isMD5}), asyn
 })
 router.get("/getProfile", async (ctx) => {
     const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
-    const data= await User.findById(userId,{_id:1,name:1,create_at:1,email:1,pic:1});
-    data.pic=path.join("http://localhost:4320", data.pic);
+    const data= await User.findById(userId);
+   console.log(data)
+    data.pic="http://localhost:4320"+ data.pic;
     ctx.body = {
         status: "200",
         data: { code: 200, data }
@@ -150,5 +152,26 @@ router.post("/changeProfile", async (ctx) => {
         status: "200",
         data: { code: 200, message: "信息修改成功" }
     }
+})
+router.get("/addBook/:bookId", async (ctx) => {
+    //userId从jwt中获取
+    const {userId}=jwt.verify(ctx.headers.authorization,config.secret);
+    const { bookId } = ctx.params;
+     const had=await bookContent.find({
+         bookId
+     });
+     if(had[0]){
+         ctx.body = {
+             status: "200",
+             data: { code: 200, message: "该书已在您的书架中" }
+         }
+         return
+     }else{
+         ctx.body = {
+             status: "200",
+             data: { code: 200, message: "书籍添加成功" }
+         }
+     }
+
 })
 export default router;

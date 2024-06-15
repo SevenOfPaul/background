@@ -5,6 +5,7 @@ import search from "./search.js"
 import transform from "./transform.js"
 import content from "./content.js"
 import user from "./user.js"
+import admin from "./admin.js";
 const router = new Router();
 //挂载路由
 
@@ -14,4 +15,5 @@ router.use("/search",search.routes());
 router.use("/transform",transform.routes());
 router.use("/content",content.routes());
 router.use("/user",user.routes());
+router.use("/admin",admin.routes());
 export default router

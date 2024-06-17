@@ -126,7 +126,7 @@ router.post("/review/page",async (ctx) => {
 router.post("/learned",async (ctx) => {
     const {todayFinished,bookId} = ctx.request.body;
     const book = await Book.findById(bookId);
-     book.todayFinished=todayFinished;
+     book.todayFinished=parseInt(todayFinished);
     await book.save();
     console.log(book)
     ctx.body={
